@@ -42,15 +42,15 @@ variable "key_name" {
   type        = string
 }
 
-variable "subnet_id" {
-  type        = string
-  description = "Subnet ID for the Pritunl EC2 instance"
-}
+# variable "subnet_id" {
+#   type        = string
+#   description = "Subnet ID for the Pritunl EC2 instance"
+# }
 
-variable "security_group_id" {
-  type        = string
-  description = "Security group ID for the Pritunl EC2 instance"
-}
+# variable "security_group_id" {
+#   type        = string
+#   description = "Security group ID for the Pritunl EC2 instance"
+# }
 # Variables for the Security Groups module
 
 variable "pritunl_ssh_cidr" {
@@ -63,4 +63,18 @@ variable "alb_ingress_cidr" {
   description = "CIDR block to allow traffic to ALB"
   type        = string
   default     = "0.0.0.0/0"
+}
+
+# Variables for the Nginx module
+
+variable "nginx_ami_id" {
+  type = string
+}
+
+variable "nginx_instance_type" {
+  type = string
+}
+
+variable "nginx_key_name" {
+  type = string
 }
