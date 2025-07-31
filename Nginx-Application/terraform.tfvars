@@ -27,6 +27,6 @@ key_name      = "terraform-keypair" # Replace with your actual key pair name
 
 
 # Variables for the Nginx module
-nginx_ami_id          = "ami-021a584b49225376d"
-nginx_instance_type   = "t2.medium"
-nginx_key_name        = "terraform-keypair"
+nginx_ami_id        = "ami-021a584b49225376d"
+nginx_instance_type = "t2.medium"
+nginx_key_name      = "terraform-keypair"

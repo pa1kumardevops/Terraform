@@ -6,7 +6,7 @@ resource "aws_instance" "pritunl" {
   vpc_security_group_ids  = var.vpc_security_group_ids
   key_name               = var.key_name
 
-  user_data = file("../scripts/install_pritunl.sh")
+  user_data = file("${path.module}/../../scripts/install_pritunl.sh")
 
   tags = {
     Name = "pritunl-instance"

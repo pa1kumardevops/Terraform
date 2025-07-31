@@ -26,10 +26,18 @@ module "pritunl" {
 }
 
 module "nginx" {
-  source              = "./modules/nginx"
-  ami_id              = var.nginx_ami_id
-  instance_type       = var.nginx_instance_type
-  key_name            = var.nginx_key_name
-  subnet_ids          = module.vpc.private_subnet_ids
-  security_group_id   = module.security_groups.nginx_app_sg_id
+  source            = "./modules/nginx"
+  ami_id            = var.nginx_ami_id
+  instance_type     = var.nginx_instance_type
+  key_name          = var.nginx_key_name
+  subnet_ids        = module.vpc.private_subnet_ids
+  security_group_id = module.security_groups.nginx_app_sg_id
+}
+
+module "alb" {
+  source             = "./modules/alb"
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  vpc_id             = module.vpc.vpc_id
+  alb_sg_id          = module.security_groups.alb_sg_id
+  nginx_instance_ids = module.nginx.instance_ids
 }
