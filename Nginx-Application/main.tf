@@ -7,12 +7,20 @@ module "vpc" {
   azs                  = var.azs
 }
 
+module "security_groups" {
+  source             = "./modules/security_groups"
+  vpc_id             = module.vpc.vpc_id
+  vpn_port           = 1194
+  pritunl_ssh_cidr   = var.pritunl_ssh_cidr
+  alb_ingress_cidr   = var.alb_ingress_cidr
+}
+
 
 module "pritunl" {
-  source            = "./modules/pritunl"
-  ami_id            = var.ami_id
-  instance_type     = var.instance_type
-  subnet_id         = var.subnet_id
-  security_group_id = var.security_group_id
-  key_name          = var.key_name
+  source                = "./modules/pritunl"
+  ami_id                = var.ami_id
+  instance_type         = var.instance_type
+  subnet_id             = module.vpc.public_subnet_ids[0]             # passed as value
+  security_group_id     = module.security_groups.pritunl_sg_id        # passed as value
+  key_name              = var.key_name
 }

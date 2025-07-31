@@ -21,5 +21,6 @@ azs = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 ami_id            = "ami-0d0ad8bb301edb745" # Replace with Amazon Linux 2023 AMI
 instance_type     = "t2.micro"
 key_name          = "terraform-keypair" # Replace with your actual key pair name
-subnet_id         = module.vpc.public_subnet_ids[0]
-security_group_id = module.vpc.public_sg_id
+
+
+# Variables for the Security Groups module

@@ -36,15 +36,31 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
-variable "subnet_id" {
-  description = "Subnet ID for the Pritunl instance"
-  type        = string
-}
-variable "security_group_id" {
-  description = "Security group ID for the Pritunl instance"
-  type        = string
-}
+
 variable "key_name" {
   description = "Key pair name for SSH access to the Pritunl instance"
   type        = string
+}
+
+variable "subnet_id" {
+  type        = string
+  description = "Subnet ID for the Pritunl EC2 instance"
+}
+
+variable "security_group_id" {
+  type        = string
+  description = "Security group ID for the Pritunl EC2 instance"
+}
+# Variables for the Security Groups module
+
+variable "pritunl_ssh_cidr" {
+  description = "Allowed CIDR for SSH to Pritunl"
+  type        = string
+  default     = "0.0.0.0/0"
+}
+
+variable "alb_ingress_cidr" {
+  description = "CIDR block to allow traffic to ALB"
+  type        = string
+  default     = "0.0.0.0/0"
 }
